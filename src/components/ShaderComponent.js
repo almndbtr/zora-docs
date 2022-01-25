@@ -11,13 +11,8 @@ export const ShaderComponent = () => {
     React.useEffect(() => {
       const canvas = canvasRef
       var sandbox = new GlslCanvas(canvas.current)
-      const rpcProvider = new ethers.providers.JsonRpcProvider(process.env.RPC_ENDPOINT)
-
-      rpcProvider.getBlockNumber().then((num) => {
-        sandbox.load(ShaderFragment)
-        sandbox.setUniform('u_seed', Math.pow(num, 0.5))
-      })
-
+      sandbox.load(ShaderFragment)
+      sandbox.setUniform('u_seed', Math.pow(14076080, 0.5))
       canvas.current.style.width = '100%'
     }, [])
     return <canvas className="shader-canvas" ref={canvasRef} />
